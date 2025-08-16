@@ -2,6 +2,8 @@
 
 https://forums.developer.nvidia.com/t/no-option-for-audio-over-displayport-hdmi/175889/10
 
+Also see "suspended" section below r.e. changing "auto" -- may need to re-do on kernel/driver updates
+
 # Useful Commands
 
 ## Logs/Status Reports
