@@ -70,13 +70,14 @@ If `speaker-test -D hw:2,7 -c 2 -t sine -f 440` or `speaker-test -c 2 -r 48000 -
 See [the-spyke/pipewire.md](https://gist.github.com/the-spyke/2de98b22ff4f978ebf0650c90e82027e)
 
 ```
-sudo apt install pipewire-media-session- wireplumber
+sudo apt install --reinstall pipewire-media-session- wireplumber
 systemctl --user --now enable wireplumber.service
-sudo apt install pipewire-audio-client-libraries
+sudo apt install --reinstall pipewire-audio-client-libraries
 sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 sudo cp /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-x86_64-linux-gnu.conf /etc/alsa/conf.d/
-sudo apt install libldacbt-{abr,enc}2 libspa-0.2-bluetooth pulseaudio-module-bluetooth-
+sudo apt install --reinstall libldacbt-{abr,enc}2 libspa-0.2-bluetooth pulseaudio-module-bluetooth-
 ```
+Maybe remove `/etc/alsa/conf.d/pipewire-jack-x86_64-linux-gnu.conf` if causes issues.
 
 In bash terminal: 
 `pactl list cards`
