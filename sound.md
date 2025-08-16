@@ -133,6 +133,10 @@ pcm.!default {
 }
 ```
 
+# `speaker-test` Throws Error
+
+Make sure `~/.asoundrc` has proper card and device IDs and uses type plug (see below). Get card and device IDs from `aplay -l` (also in `pactl list cards`).
+
 # Fixed, Then Broken on Reboot
 
 Try some of the stuff above (e.g., setting defaults, checking profile states, checking .conf files, etc.) then...
@@ -153,4 +157,16 @@ systemctl --user unmask pipewire.socket pipewire-pulse.socket
 systemctl --user start pipewire pipewire-pulse wireplumber
 systemctl --user start pipewire.socket pipewire-pulse.socket
 ```
+
+May throw error, but still run it:
+```
+sudo modprobe -r snd_hda_codec_hdmi
+sudo modprobe snd_hda_codec_hdmi
+```
+
+`aplay -l`
+`aplay -D plughw:1,3 /usr/share/sounds/alsa/Front_Center.wav` (replacing 1,3 as needed)
+
+
+
 
