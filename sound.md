@@ -145,4 +145,12 @@ systemctl --user stop pipewire.socket pipewire-pulse.socket
 killall pipewire wireplumber
 ```
 
+Reboot
+
+```
+systemctl --user unmask pipewire pipewire-pulse wireplumber
+systemctl --user unmask pipewire.socket pipewire-pulse.socket
+systemctl --user start pipewire pipewire-pulse wireplumber
+systemctl --user start pipewire.socket pipewire-pulse.socket
+```
 
