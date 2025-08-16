@@ -22,6 +22,8 @@
 
 `inxi -Aazy`
 
+`pw-cli info Node`
+
 ## Setting Volume
 
 Replace "62" with the sink ID as listed in output of `wpctl status`
@@ -67,6 +69,13 @@ Check any of these if they exist:
 * `~/.config/pipewire/pipewire-pulse.conf`
 * `~/.config/pipewire/media-session.d/override-s2721qs.conf`
 * `/proc/asound/card2/` (replace card 2 if needed)
+* `/usr/share/pipewire/pipewire.conf` and `~/.config/pipewire/`
+
+## Suspended
+
+`aplay -l` shows all suspended?
+`pw-cli info Node` just has dummy?
+
 
 ## `speaker-test` Works but Nothing Else Does
 
