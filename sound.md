@@ -60,12 +60,13 @@ Make sure everything is good with video/GPU (see video.md).
 
 Remove pulseaudio `sudo apt remove pulseaudio*`
 
-## Check Configuration Files
+## Check Configuration Files/Directories
 Check any of these if they exist:
 * `~/.config/wireplumber/main.lua.d/90-s2721qs.lua` (e.g., `props["alsa.monitor_name"] = "DELL S2721QS"` if monitor name changes)
 * `~/.asoundrc` (check alignment of card and device IDs with `aplay -l`)
 * `~/.config/pipewire/pipewire-pulse.conf`
 * `~/.config/pipewire/media-session.d/override-s2721qs.conf`
+* `/proc/asound/card2/` (replace card 2 if needed)
 
 ## `speaker-test` Works but Nothing Else Does
 
@@ -191,6 +192,9 @@ sudo apt --fix-broken install
 sudo alsa force-reload
 ```
 then reboot
+```
+sudo apt install pulseaudio-utils
+```
 
 
 
