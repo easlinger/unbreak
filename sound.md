@@ -30,6 +30,8 @@ Also see "suspended" section below r.e. changing "auto" -- may need to re-do on 
 
 `pw-cli info Node`
 
+`journalctl -k | grep -Ei "ALSA|HDA|sof[-]|HDMI|snd[_-]|sound|hda.codec|hda.intel"`
+
 ## Setting Volume
 
 Replace "62" with the sink ID as listed in output of `wpctl status`
