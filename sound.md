@@ -56,6 +56,12 @@ Make sure you're in the audio group (with the `groups` command); use `sudo userm
 
 Make sure everything is good with video/GPU (see video.md).
 
+## Check Configuration Files
+* `~/.config/wireplumber/main.lua.d/90-s2721qs.lua` (e.g., `props["alsa.monitor_name"] = "DELL S2721QS"` if monitor name changes)
+* `~/.asoundrc` (check alignment of card and device IDs with `aplay -l`)
+
+## `speaker-test` Works but Nothing Else Does
+
 If `speaker-test -D hw:2,7 -c 2 -t sine -f 440` or `speaker-test -c 2 -r 48000 -D default` (replace the 2 and 7 in `hw:2,7` with <card>,<device> as listed in output of `aplay -L`) works but no sound in applications or in GUI settings sound test...
 
 See [the-spyke/pipewire.md](https://gist.github.com/the-spyke/2de98b22ff4f978ebf0650c90e82027e)
