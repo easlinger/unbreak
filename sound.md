@@ -85,6 +85,8 @@ Add to `~/.config/pipewire/pipewire.conf`'s "context.properties" dictionary:
     node.suspend-on-idle                   = false
     default.clock.force-nanosleep          = false
 ```
+Then
+`systemctl --user restart pipewire pipewire-pulse`
 
 ## `speaker-test` Works but Nothing Else Does
 
