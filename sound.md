@@ -77,20 +77,51 @@ See output like:
 
 			  hdmi-output-3 ... no product name shown (not available)
 			  
-First try HDMI/DP port 0 on S2721QS
+
 ```
 pactl set-card-profile alsa_card.pci-0000_01_00.1 output:hdmi-stereo
 pactl set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo
 speaker-test -c2 -t wav
 ```
 
-Also `wpctl set-default 63` (replace 63 with the sink ID as listed in output of `wpctl status`)
+Also try ...stereo-extra1 and 2.
 
-# Test with speaker-test
-$ 
+Also `wpctl set-default 56` (replace 56 with the sink ID as listed in output of `wpctl status`)
 
-# Try HDMI/DP port 1 on S2721QS
-$ pactl set-card-profile alsa_card.pci-0000_01_00.1 output:hdmi-stereo-extra1
-$ pactl set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1
+# Example `~/.asoundrc`
+```
+pcm.nvhdmi {
+    type plug
+    slave {
+        pcm "hw:2,3"   # HDMI 0
+        channels 2
+    }
+}
+pcm.nvhdmi1 {
+    type plug
+    slave {
+        pcm "hw:2,7"   # HDMI 1
+        channels 2
+    }
+}
+pcm.nvhdmi2 {
+    type plug
+    slave {
+        pcm "hw:2,8"   # HDMI 2
+        channels 2
+    }
+}
+pcm.nvhdmi3 {
+    type plug
+    slave {
+        pcm "hw:2,9"   # HDMI 3
+        channels 2
+    }
+}
+pcm.!default {
+    type plug
+    slave.pcm "nvhdmi"
+}
+```
 
-$ speaker-test -c2 -t wav
+
