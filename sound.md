@@ -86,10 +86,14 @@ Add to `~/.config/pipewire/pipewire.conf`'s "context.properties" dictionary:
     node.suspend-on-idle                   = false
     default.clock.force-nanosleep          = false
 ```
+
+Add or uncomment `pulse.idle.timeout = 0` to `~/.config/pipewire/pipewire-pulse.conf` (copy first from `/usr/share/pipewire/pipewire-pulse.conf` if needed).
+
 Then
 `systemctl --user restart pipewire pipewire-pulse`
 
-Add or uncomment `pulse.idle.timeout = 0` to `~/.config/pipewire/pipewire-pulse.conf` (copy first from `/usr/share/pipewire/pipewire-pulse.conf` if needed).
+Try changing `/lib/udev/rules.d/60-nvidia.rules` any "auto" to "on" (or other relevant files you find using `grep 10de /lib/udev/rules.d/*`)
+
 
 ## `speaker-test` Works but Nothing Else Does
 
