@@ -8,6 +8,8 @@
 
 `aplay -L`
 
+`pactl list short sinks`
+
 `pactl list short sink-inputs`
 
 `pactl info`
