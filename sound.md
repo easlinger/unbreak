@@ -57,8 +57,11 @@ Make sure you're in the audio group (with the `groups` command); use `sudo userm
 Make sure everything is good with video/GPU (see video.md).
 
 ## Check Configuration Files
+Check any of these if they exist:
 * `~/.config/wireplumber/main.lua.d/90-s2721qs.lua` (e.g., `props["alsa.monitor_name"] = "DELL S2721QS"` if monitor name changes)
 * `~/.asoundrc` (check alignment of card and device IDs with `aplay -l`)
+* `~/.config/pipewire/pipewire-pulse.conf`
+* `~/.config/pipewire/media-session.d/override-s2721qs.conf`
 
 ## `speaker-test` Works but Nothing Else Does
 
