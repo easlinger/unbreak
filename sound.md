@@ -6,7 +6,7 @@
 
 `pactl list cards`
 
-`aplay -L`
+`aplay -L` (or `aplay -l` for short)
 
 `pactl list short sinks`
 
@@ -18,6 +18,8 @@
 
 `LANG=C pactl info | grep '^Server Name'`
 
+`xrandr --verbose`  # to see what display connects to what port
+
 ## Setting Volume
 
 Replace "62" with the sink ID as listed in output of `wpctl status`
@@ -28,9 +30,14 @@ wpctl set-volume 62 1.0
 
 ## Tests
 
-* `paplay /usr/share/sounds/alsa/Front_Center.wav` 
+Replace `hw:1,3` according to your actual card & device.
+
+* `paplay /usr/share/sounds/alsa/Front_Center.wav`
+* `aplay -D plughw:1,3 /usr/share/sounds/alsa/Front_Center.wav`
 * `speaker-test -c 2 -r 48000 -D default`  # test sound
-* `speaker-test -D hw:2,7 -c 2 -t sine -f 440`
+* `speaker-test -D hw:1,3 -c 2 -t sine -f 440`
+* `sox /usr/share/sounds/alsa/Front_Center.wav -c 2 /tmp/test_stereo.wav aplay -D hw:1,3 /tmp/test_stereo.wav`
+
 
 You may have to do 
 ```
@@ -124,6 +131,18 @@ pcm.!default {
     type plug
     slave.pcm "nvhdmi"
 }
+```
+
+# Fixed, Then Broken on Reboot
+
+Try some of the stuff above (e.g., setting defaults, checking profile states, checking .conf files, etc.) then...
+
+```
+systemctl --user mask pipewire pipewire-pulse wireplumber
+systemctl --user mask pipewire.socket pipewire-pulse.socket
+systemctl --user stop pipewire pipewire-pulse wireplumber
+systemctl --user stop pipewire.socket pipewire-pulse.socket
+killall pipewire wireplumber
 ```
 
 
