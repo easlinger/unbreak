@@ -42,7 +42,6 @@ Replace `hw:1,3` according to your actual card & device.
 * `speaker-test -D hw:1,3 -c 2 -t sine -f 440`
 * `sox /usr/share/sounds/alsa/Front_Center.wav -c 2 /tmp/test_stereo.wav aplay -D hw:1,3 /tmp/test_stereo.wav`
 
-
 You may have to do 
 ```
 systemctl --user stop pipewire pipewire-pulse
@@ -76,6 +75,16 @@ Check any of these if they exist:
 `aplay -l` shows all suspended?
 `pw-cli info Node` just has dummy?
 
+```
+mkdir -p ~/.config/pipewire
+cp /usr/share/pipewire/pipewire.conf ~/.config/pipewire/
+```
+Add to `~/.config/pipewire/pipewire.conf`'s "context.properties" dictionary:
+
+```
+    node.suspend-on-idle                   = false
+    default.clock.force-nanosleep          = false
+```
 
 ## `speaker-test` Works but Nothing Else Does
 
