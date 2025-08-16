@@ -39,7 +39,7 @@ systemctl --user start pipewire pipewire-pulse
 
 ## Settings
 
-`pavucontrol # maybe try `pulseaudio -k && sudo alsa force-reload` first`
+`pavucontrol # maybe try `pulseaudio -k && sudo alsa force-reload` first
 
 # No Sound
 
