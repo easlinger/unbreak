@@ -14,6 +14,8 @@
 
 `pactl info | grep "Default Sink"`
 
+`LANG=C pactl info | grep '^Server Name'`
+
 ## Setting Volume
 
 Replace "62" with the sink ID as listed in output of `wpctl status`
@@ -35,10 +37,28 @@ speaker-test -c 2 -r 48000 -D default  # (or whatever other version of the `spea
 systemctl --user start pipewire pipewire-pulse
 ```
 
+## Settings
+
+`pavucontrol # maybe try `pulseaudio -k && sudo alsa force-reload` first`
 
 # No Sound
 
+Make sure you're in the audio group (with the `groups` command); use `sudo usermod -aG audio $USER` and reboot if needed.
+
+Make sure everything is good with video/GPU (see video.md).
+
 If `speaker-test -D hw:2,7 -c 2 -t sine -f 440` or `speaker-test -c 2 -r 48000 -D default` (replace the 2 and 7 in `hw:2,7` with <card>,<device> as listed in output of `aplay -L`) works but no sound in applications or in GUI settings sound test...
+
+See [the-spyke/pipewire.md](https://gist.github.com/the-spyke/2de98b22ff4f978ebf0650c90e82027e)
+
+```
+sudo apt install pipewire-media-session- wireplumber
+systemctl --user --now enable wireplumber.service
+sudo apt install pipewire-audio-client-libraries
+sudo cp /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+sudo cp /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-x86_64-linux-gnu.conf /etc/alsa/conf.d/
+sudo apt install libldacbt-{abr,enc}2 libspa-0.2-bluetooth pulseaudio-module-bluetooth-
+```
 
 In bash terminal: 
 `pactl list cards`
@@ -62,8 +82,9 @@ First try HDMI/DP port 0 on S2721QS
 pactl set-card-profile alsa_card.pci-0000_01_00.1 output:hdmi-stereo
 pactl set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo
 speaker-test -c2 -t wav
-
 ```
+
+Also `wpctl set-default 63` (replace 63 with the sink ID as listed in output of `wpctl status`)
 
 # Test with speaker-test
 $ 
