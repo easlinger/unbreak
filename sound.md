@@ -1,4 +1,6 @@
-Check this solution: https://forums.developer.nvidia.com/t/no-option-for-audio-over-displayport-hdmi/175889/10
+# Check this solution FIRST
+
+https://forums.developer.nvidia.com/t/no-option-for-audio-over-displayport-hdmi/175889/10
 
 # Useful Commands
 
