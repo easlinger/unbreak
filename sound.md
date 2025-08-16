@@ -69,6 +69,7 @@ Check any of these if they exist:
 * `~/.config/pipewire/media-session.d/override-s2721qs.conf`
 * `/proc/asound/card2/` (replace card 2 if needed)
 * `/usr/share/pipewire/pipewire.conf` and `~/.config/pipewire/`
+* `/usr/share/pipewire/pipewire-pulse.conf` and `~/.config/pipewire/pipewire-pulse.conf`
 
 ## Suspended
 
@@ -87,6 +88,8 @@ Add to `~/.config/pipewire/pipewire.conf`'s "context.properties" dictionary:
 ```
 Then
 `systemctl --user restart pipewire pipewire-pulse`
+
+Add or uncomment `pulse.idle.timeout = 0` to `~/.config/pipewire/pipewire-pulse.conf` (copy first from `/usr/share/pipewire/pipewire-pulse.conf` if needed).
 
 ## `speaker-test` Works but Nothing Else Does
 
