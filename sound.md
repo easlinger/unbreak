@@ -154,28 +154,7 @@ Also `wpctl set-default 56` (replace 56 with the sink ID as listed in output of 
 pcm.nvhdmi {
     type plug
     slave {
-        pcm "hw:2,3"   # HDMI 0
-        channels 2
-    }
-}
-pcm.nvhdmi1 {
-    type plug
-    slave {
-        pcm "hw:2,7"   # HDMI 1
-        channels 2
-    }
-}
-pcm.nvhdmi2 {
-    type plug
-    slave {
-        pcm "hw:2,8"   # HDMI 2
-        channels 2
-    }
-}
-pcm.nvhdmi3 {
-    type plug
-    slave {
-        pcm "hw:2,9"   # HDMI 3
+        pcm "dmix:1,3"   # HDMI 0
         channels 2
     }
 }
@@ -183,6 +162,11 @@ pcm.!default {
     type plug
     slave.pcm "nvhdmi"
 }
+ctl.!default {
+    type hw
+    card 1
+}
+
 ```
 
 # `speaker-test` Throws Error
