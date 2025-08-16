@@ -20,6 +20,8 @@
 
 `xrandr --verbose`  # to see what display connects to what port
 
+`inxi -Aazy`
+
 ## Setting Volume
 
 Replace "62" with the sink ID as listed in output of `wpctl status`
@@ -55,6 +57,8 @@ systemctl --user start pipewire pipewire-pulse
 Make sure you're in the audio group (with the `groups` command); use `sudo usermod -aG audio $USER` and reboot if needed.
 
 Make sure everything is good with video/GPU (see video.md).
+
+Remove pulseaudio `sudo apt remove pulseaudio*`
 
 ## Check Configuration Files
 Check any of these if they exist:
@@ -176,6 +180,17 @@ sudo modprobe snd_hda_codec_hdmi
 
 `aplay -l`
 `aplay -D plughw:1,3 /usr/share/sounds/alsa/Front_Center.wav` (replacing 1,3 as needed)
+
+# Worst Case
+
+Try full re-install:
+```
+sudo dpkg --purge --force-depends pulseaudio alsa-base alsa-utils
+sudo apt install pulseaudio alsa-base alsa-utils
+sudo apt --fix-broken install
+sudo alsa force-reload
+```
+then reboot
 
 
 
